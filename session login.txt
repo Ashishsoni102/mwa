@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+    </head>
+    <body>
+        <?php
+            session_start();
+
+            if(!isset($_SESSION['start'])){
+            $_SESSION['start'] = time();
+            }
+
+            if(isset($_SESSION['start']) && (time() - $_SESSION['start']> 10)){
+            session_unset();
+            session_destroy();
+            echo '<script>alert("Session is expired!!")</script>';
+            }
+        ?>
+        <form action="welcome.php" method="post">
+            <label>Username</label>
+            <input type="text" name="name" class="name" placeholder="Name"><br><br>
+            <label>Email -ID</label>
+            <input type="text" name="email" class="email" placeholder="Email" ><br><br>
+            <label>Password</label>
+            <input type="text" name="password" class="password"  placeholder="Password"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+        
+    </body>
+</html>
